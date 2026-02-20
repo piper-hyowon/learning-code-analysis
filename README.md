@@ -4,6 +4,33 @@
 ## 목표
 소스 코드 분석해서 API 문서 자동 생성하는 라이브러리 개발을 위한 기반 다지기
 
+## 구조
+```
+001-file-io/
+├── README.md                   # 미션 설명
+├── go/
+│   ├── main.go
+│   ├── go.mod
+│   └── testdata/
+│       ├── input.txt
+│       └── output/            # Write 결과 저장
+├── csharp/
+│   ├── Program.cs
+│   ├── FileIO.csproj
+│   └── TestData/ 
+│       ├── input.txt
+│       └── output/
+```
+
+## 실행
+
+**Go**
+```
+cd topics/{topic}/go
+go run main.go
+```
+
+
 ## 로드맵
 
 ### Phase 1: 기초

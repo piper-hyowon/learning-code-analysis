@@ -1,0 +1,4 @@
+이건 inpu\n\nnt.txt
+haha
+hoho\n\n
+\n
