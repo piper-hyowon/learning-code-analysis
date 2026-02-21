@@ -6,28 +6,72 @@
 
 ## 구조
 ```
-001-file-io/
-├── README.md                   # 미션 설명
-├── go/
-│   ├── main.go
-│   ├── go.mod
-│   └── testdata/
-│       ├── input.txt
-│       └── output/            # Write 결과 저장
-├── csharp/
-│   ├── Program.cs
-│   ├── FileIO.csproj
-│   └── TestData/ 
-│       ├── input.txt
-│       └── output/
+learning-code-analysis/
+├── go.mod
+└── topics/
+    ├── 001-file-io/
+    │   ├── README.md                  # 토픽에서 수행할 미션, 메모
+    │   ├── 1-1_newline/
+    │   │   ├── go/
+    │   │   │   ├── main.go
+    │   │   │   └── testdata/
+    │   │   │       ├── hello.go
+    │   │   │       ├── hello.cs
+    │   │   │       ├── world.go
+    │   │   │       ├── world.cs
+    │   │   │       ├── input.txt
+    │   │   │       └── output/    # Write 결과 저장
+    │   │   └── csharp/
+    │   │       ├── Program.cs
+    │   │       ├── Newline.csproj
+    │   │       └── testdata/
+    │   │           ├── hello.go
+    │   │           ├── hello.cs
+    │   │           ├── world.go
+    │   │           ├── world.cs
+    │   │           ├── input.txt
+    │   │           └── output/
+    │   ├── 1-2_filefilter/
+    │   │   ├── go/
+    │   │   └── csharp/
+    │   ├── 1-3_filecreate/
+    │   │   ├── go/
+    │   │   └── csharp/
+    │   ├── 2-1_recursivefind/
+    │   │   ├── go/
+    │   │   └── csharp/
+    │   ├── 2-2_metadata/
+    │   │   ├── go/
+    │   │   └── csharp/
+    │   └── 2-3_dirtree/
+    │   │   ├── go/
+    │   │   └── csharp/
+    │
+    ├── 002-text-parsing-and-regex/
+    └── 003-ast-basics/
 ```
 
 ## 실행
 
-**Go**
+### Go
 ```
-cd topics/{topic}/go
+# topics/{토픽}/{서브토픽}/{언어}/{구현체}
+go run topics/001-file-io/1-1_newline/go/main.go
+
+# 또는 해당 주제에서
+cd topics/001-file-io/1-1_newline/go
 go run main.go
+```
+
+
+### C#
+```bash
+# 루트에서
+dotnet run --project topics/001-file-io/1-1_newline/csharp/Newline.csproj
+
+# 또는 해당 주제에서
+cd topics/001-file-io/1-1_newline/csharp
+dotnet run
 ```
 
 

@@ -14,13 +14,35 @@
   - [ ] Go
   - [ ] CSharp
 - 파일 생성(json, markdown)
+  - [ ] Go
+  - [ ] CSharp
 
 ### Level 2: 디렉토리 탐색
 - 특정 디렉토리 내 모든 소스코드 파일 재귀적으로 찾기
 - 파일 메타데이터 수집(크기, 수정 날짜 등)
 - 디렉토리 구조를 트리 형태로 출력
 
-## 메모
+# 메모
+
+## 경로 기준점
+```go
+// CWD 기준 (실행 위치 의존)
+// 방법 1: 암묵적
+filename := "testdata/input.txt"
+
+// 방법 2: 명시적
+dir, _ := os.Getwd()
+filename := filepath.Join(dir, "testdata/input.txt")
+// → 둘 다 cd topics/.../go 후 실행 필요
+
+// 소스 파일 기준 (위치 독립)
+_, file, _, _ := runtime.Caller(0)
+dir := filepath.Dir(file)
+filename := filepath.Join(dir, "testdata/input.txt")
+// → 어디서든 실행 가능
+```
+
+## 1-1_newline
 
 ### Go
 - ioutil.ReadFile() / WriteFile(): 1.15 이전
