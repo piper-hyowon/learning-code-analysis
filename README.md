@@ -31,19 +31,16 @@ learning-code-analysis/
     │   │           ├── world.cs
     │   │           ├── input.txt
     │   │           └── output/
-    │   ├── 1-2_filefilter/
+    │   ├── 1-2_filecreate/
     │   │   ├── go/
     │   │   └── csharp/
-    │   ├── 1-3_filecreate/
-    │   │   ├── go/
-    │   │   └── csharp/
-    │   ├── 2-1_recursivefind/
+    │   ├── 2-1_filter_and_walk/    # 단일 필터, 재귀, 제외
     │   │   ├── go/
     │   │   └── csharp/
     │   ├── 2-2_metadata/
     │   │   ├── go/
     │   │   └── csharp/
-    │   └── 2-3_dirtree/
+    │   └── 3-1_dirtree/
     │   │   ├── go/
     │   │   └── csharp/
     │

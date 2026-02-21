@@ -21,9 +21,6 @@ func main() {
 	baseDir := filepath.Dir(currentFile)
 	testdataPath := filepath.Join(baseDir, "testdata", "input.txt")
 
-	fmt.Println("현재 파일 위치:", baseDir)
-	fmt.Println("읽을 파일:", testdataPath)
-
 	data, err := os.ReadFile(testdataPath)
 	if err != nil {
 		fmt.Println("파일 읽기 실패:", err)
