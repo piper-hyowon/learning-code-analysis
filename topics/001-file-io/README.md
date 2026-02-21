@@ -20,7 +20,6 @@
 - 파일 메타데이터 수집(크기, 수정 날짜 등)
 - 디렉토리 구조를 트리 형태로 출력
 
-
 ## 메모
 
 ### Go
@@ -38,10 +37,32 @@
 
 ### 라인 수 세기 방식 비교
 
-| 방식 | 메모리 | 용도 |
-|---|---|---|
-| `bytes.Count(data, []byte("\n"))` | 파일 전체 | 빠름, 단순 카운트 |
-| `strings.Split(content, "\n")` | 파일 전체 + 슬라이스 | 각 줄을 배열로 다뤄야 할 때 |
-| `bufio.Scanner` | 한 줄씩만 | 대용량 파일 (GB 단위)
+| 방식 | 메모리 | 속도 | 용도 |
+|---|---|---|---|
+| `bytes.Count` | 파일 전체 | 가장 빠름 | 단순 카운트만 |
+| `strings.Split` | 파일 전체 + 슬라이스 | 중간 | 각 줄 배열로 처리 |
+| `bufio.Scanner` | 한 줄씩만 | 느림 | 대용량 파일(GB), 안전성 |
+
+- OS별로 NewLine 설정이 다름 (Unix = \n, Windows = \r\n)
+- bufio.Scanner는 \n, \r\n, \r 모두 자동 처리해서 가장 안전
+- bytes.Count, strings.Split 은 UTF-8 + Unix 스타일 줄바꿈 환경에서만 작동
+
+### C#
+- C#은 플랫폼별로 줄바꿈 자동 선택
+`Environment.NewLine`
+
+### C#
+- 줄바꿈 자동 처리
+  - Environment.NewLine (읽기 전용, 플랫폼별 기본값)
+  - StreamReader.ReadLine() - \r, \n, \r\n 모두 자동 인식
+  
+- 줄바꿈 커스터마이징
+  - Console.Out.NewLine (콘솔 출력)
+  - StreamWriter.NewLine (파일 쓰기)
+  - 예: writer.NewLine = "\n"; // Unix 스타일 강제
 
 
+## 주의사항
+- 텍스트 파일의 인코딩 확인 필요 (UTF-8, UTF-16, EUC-KR 등)
+- 마지막 줄에 newline이 없는 경우 처리 (count+1 필요할 수 있음)
+- 바이너리 파일은 라인 수 세기 의미 없음
