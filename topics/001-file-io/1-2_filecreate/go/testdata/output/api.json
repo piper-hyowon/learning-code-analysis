@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "path": "/v1/users",
+  "summary": "사용자 목록 조회",
+  "description": "전체 사용자 목록 반환"
+}

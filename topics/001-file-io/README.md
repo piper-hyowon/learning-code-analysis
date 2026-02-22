@@ -12,7 +12,7 @@
   - [x] Go
   - [ ] CSharp
 - 파일 생성(json, markdown)
-  - [ ] Go
+  - [X] Go
   - [ ] CSharp
 
 ### Level 2: 디렉토리 탐색 + 필터링
@@ -65,6 +65,29 @@ filename := filepath.Join(dir, "testdata/input.txt")
 // → 어디서든 실행 가능
 ```
 
+<details>
+<summary>runtime.Caller 매개변수/반환값</summary>
+
+- 현재 실행 중인 코드가 어디서 호출되었는지(파일명, 라인번호 등)를 알려줌
+- 로깅이나 디버깅에 많이 씁니다.
+
+- 매개변수
+  - skip int — 콜 스택에서 몇 프레임을 건너뛸지 지정
+
+  - skip=0 → Caller를 호출한 함수의 정보
+  - skip=1 → 그 함수를 호출한 함수의 정보
+  - 이런 식으로 스택을 거슬러 올라감
+
+- 반환값
+
+  - pc uintptr — 프로그램 카운터 (해당 호출 지점의 메모리 주소)
+  - file string — 소스 파일 경로 (항상 / 구분자 사용)
+  - line int — 해당 파일에서의 라인 번호
+  - ok bool — 정보를 가져오는 데 성공했는지 여부
+</details>
+
+
+
 ## 1-1_newline
 
 ### Go
@@ -77,7 +100,7 @@ filename := filepath.Join(dir, "testdata/input.txt")
     - 1. 파일 일부만 읽기
     - 2. 특정 위치부터 읽기 (file.Seek(1000, 0) // 1000바이트 건너뛰기)
     - 3. 한 줄씩 스트리밍(메모리 절약)
-    - 4. 읽기/쓰기 모드 지정(언제 쓰이는거지?)
+    - 4. 읽기/쓰기 모드 지정
 
 ### 라인 수 세기 방식 비교
 
@@ -107,3 +130,27 @@ filename := filepath.Join(dir, "testdata/input.txt")
 - 텍스트 파일의 인코딩 확인 필요 (UTF-8, UTF-16, EUC-KR 등)
 - 마지막 줄에 newline이 없는 경우 처리 (count+1 필요할 수 있음)
 - 바이너리 파일은 라인 수 세기 의미 없음
+
+## 1-2_filecreate
+### Go
+## 파일 쓰기 / 이어쓰기
+
+| 함수 | 용도 |
+|------|------|
+| `os.WriteFile` | 새로 쓰기 (덮어씀) |
+| `os.Open` | 읽기 전용 — **쓰기 불가** |
+| `os.OpenFile` | 플래그로 모드 지정 |
+
+**플래그 조합:**
+- `O_APPEND\|O_WRONLY` → 이어쓰기
+- `O_CREATE\|O_WRONLY\|O_TRUNC` → 새로 만들기
+- `O_CREATE\|O_APPEND\|O_WRONLY` → 없으면 생성, 있으면 이어쓰기
+
+- struct 데이터 → 문자열 조합 → `os.WriteFile`로 파일 쓰기
+- text/template 이 api문서에서는 젤 나아보임
+
+
+## 2-1
+
+https://pkg.go.dev/path/filepath#Walk
+
